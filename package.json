@@ -2,7 +2,7 @@
   "name": "claude-generator-file",
   "displayName": "claude-generator-file",
   "description": "",
-  "version": "0.0.1",
+  "version": "0.0.5",
   "engines": {
     "vscode": "^1.81.0"
   },
@@ -11,7 +11,8 @@
   ],
   "main": "./out/extension.js",
   "activationEvents": [
-    "onCommand:extension.openContextMenu"
+    "onCommand:extension.openContextMenu",
+    "onCommand:extension.openContextMenuBook"
   ],
   "contributes": {
     "commands": [
@@ -22,12 +23,41 @@
       {
         "command": "extension.copyFilesContent",
         "title": "Copy Files Content"
+      },
+      {
+        "command": "extension.openContextMenuBook",
+        "title": "Copy Files And Bookmark"
+      },
+      {
+        "command": "extension.copyFilesContentBook",
+        "title": "Copy Files And Bookmark"
       }
     ],
     "menus": {
       "explorer/context": [
         {
           "command": "extension.openContextMenu"
+        },
+        {
+          "command": "extension.openContextMenuBook"
+        }
+      ]
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "cm-bookmark-explorer",  
+          "title": "Coulde MGG",
+          "icon": "$(heart)" 
+        }
+      ]
+    },
+    "views": {
+      "cm-bookmark-explorer": [        
+        {
+          "id": "myTreeView",
+          "name": "My Custom View",
+          "location": "sidebar"
         }
       ]
     }
@@ -55,6 +85,9 @@
     "typescript": "^5.1.3"
   },
   "dependencies": {
-    "jscodeshift": "^0.15.0"
+    "html-minifier": "^4.0.0",
+    "jscodeshift": "^0.15.0",
+    "mammoth": "^1.6.0",
+    "xlsx": "^0.18.5"
   }
 }
